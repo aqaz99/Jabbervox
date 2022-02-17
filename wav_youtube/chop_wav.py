@@ -27,10 +27,10 @@ with youtube_dl.YoutubeDL(ydl_opts) as ydl:
 time.sleep(3)
 
 # Examples of output from parsing transcript
-# MDCM-1|his body is disintegrating he is not of this world and the strain of being here is killing him he is not like us he is Start: 0.0 Duration: 4.38
-# MDCM-2|not one of us he can do amazing things he has one chance to return to his people if he can make it to the Start: 6.96 Duration: 5.4
-# MDCM-3|rendezvous coordinates at the appointed time he will live he will leave us and return to the world he belongs him if he Start: 13.74 Duration: 4.14
-# MDCM-4|fails he dies there are humans who care about him aid him but there are other humans chasing him they want to use him Start: 20.369 Duration: 5.49
+# MCDM-1|his body is disintegrating he is not of this world and the strain of being here is killing him he is not like us he is Start: 0.0 Duration: 4.38
+# MCDM-2|not one of us he can do amazing things he has one chance to return to his people if he can make it to the Start: 6.96 Duration: 5.4
+# MCDM-3|rendezvous coordinates at the appointed time he will live he will leave us and return to the world he belongs him if he Start: 13.74 Duration: 4.14
+# MCDM-4|fails he dies there are humans who care about him aid him but there are other humans chasing him they want to use him Start: 20.369 Duration: 5.49
 
 t1 = 0.0 #Works in milliseconds
 t2 = 6.96 * 1000
