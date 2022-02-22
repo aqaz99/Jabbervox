@@ -40,9 +40,9 @@ for item in data["videos"]:
     if(item["complete"] == "true"):
         print("Skipping {}".format(item["id"]))
         continue
-
+    print("Processing {}".format(item["id"]))
     csv_tag = item["speaker"]
-    youtube_video = item["id"]
+    youtube_video = item["id"]#
 
     my_script = YouTubeTranscriptApi.get_transcript(youtube_video)
     counter = 0
@@ -156,7 +156,7 @@ for item in data["videos"]:
 print("Converting audio to single channel")
 for file in os.listdir('./wavs'):
     if(file.find("stereo") == -1): # Skip wav files that have already been converted to single channel
-        print("Skipping ", file)
+        # print("Skipping ", file)
         continue
 
     new_name = file.split("_")[1] # Convert from stereo_EXMPL-001.wav -> EXMPL-001.wav
