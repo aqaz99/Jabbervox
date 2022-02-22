@@ -10,6 +10,7 @@ import youtube_dl
 import os
 import json
 
+import datetime # for converting seconds into hrs:mins:scnds
 # Helper functions
 from helpers import *
 
@@ -31,12 +32,19 @@ else:
     transcript_label = int(last_line) + 1
     video_label = int(last_line) + 1
 
+total_audio_length = 0
 
 if not os.path.exists("./wavs/"): # Need to mkdir for wavs
     # Create dir for wavs
     os.mkdir('./wavs/')
 
 for item in data["videos"]:
+    # Get the script for the video
+    my_script = YouTubeTranscriptApi.get_transcript(item["id"])
+
+    # Go to the last entry of the transcript. The start + the duration will tell us how long the video is
+    total_audio_length += my_script[len(my_script)-1]["start"]
+    total_audio_length += my_script[len(my_script)-1]["duration"]
     if(item["complete"] == "true"):
         print("Skipping {}".format(item["id"]))
         continue
@@ -44,12 +52,14 @@ for item in data["videos"]:
     csv_tag = item["speaker"]
     youtube_video = item["id"]#
 
-    my_script = YouTubeTranscriptApi.get_transcript(youtube_video)
+    # my_script = YouTubeTranscriptApi.get_transcript(youtube_video)
     counter = 0
     time_stamps = []
     to_write = []
     script_len=len(my_script)
 
+    print(my_script)
+    exit(1)
     # add complete to video_config.json so we don't repeat pulling video in future
 
     # print(script_len)
@@ -173,4 +183,5 @@ if os.path.exists("./wav"): # Need to mkdir for wavs
     # Create dir for wavs
     os.system("rm wav")
 
+print("-"*10,"\nTotal audio length of wav files: {}".format(str(datetime.timedelta(seconds=total_audio_length))))
 # I need to solve how to add more wav files dynamically using the count
