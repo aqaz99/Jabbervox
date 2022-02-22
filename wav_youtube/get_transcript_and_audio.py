@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from youtube_transcript_api import YouTubeTranscriptApi
 
 # Wav chop and wave download 
-import time
+import time as tm
 from pydub import AudioSegment
 import youtube_dl
 import os
@@ -100,12 +100,15 @@ for item in data["videos"]:
 # MATT COLVILE HAS A VIDEO WHERE HE SHOWS A CLIP THAT ISN;T HIS VOICE
 
     # # # Downloading a 9.5 minute video takes aroun ~2 minutes
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.download(['http://www.youtube.com/watch?v={}'.format(youtube_video)])
+    try:
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+            ydl.download(['http://www.youtube.com/watch?v={}'.format(youtube_video)])
+    except:
+        print("Error getting {}, skipping to next video", youtube_video)
     # # ## ----- Download Youtube Audio As Wav -----##
 
     # # # # Sleep for a few seconds to allow file to finalize
-    # time.sleep(1)
+    tm.sleep(1.1) # tm because of time variable overwrite
 
     # Examples of output from parsing transcript
     # MCDM-1|his body is disintegrating he is not of this world and the strain of being here is killing him he is not like us he is Start: 0.0 Duration: 4.38
