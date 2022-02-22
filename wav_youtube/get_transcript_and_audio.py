@@ -8,34 +8,40 @@ import time as tm
 from pydub import AudioSegment
 import youtube_dl
 import os
-import shutil # For deleting directories that are not empty\
 import json
 
+# Helper functions
+from helpers import *
 
 ## ----- Get And Parse Transcript -----##
 print("Getting and Parsing Youtube Transcript Into Metadata File")
 
-# Delete metadata csv
-if os.path.exists("./metadata.csv"):
-    os.remove("./metadata.csv")
-else:
-    f = open("metadata.csv", "w")
-    f.close()
+last_line = get_most_recent_metadata_line()
 
 # Exaple of returned json 
 #  {'text': "worried and desperate he hasn't given", 'start': 278.78, 'duration': 3.84}
 with open("./video_config.json") as file:
     data = json.load(file)
 
-# Need counter outside of loop for continued
-transcript_label = 0
-video_label = 0
+if(last_line == ""):
+    # Need counter outside of loop for continued
+    transcript_label = 0
+    video_label = 0
+else:
+    transcript_label = int(last_line) + 1
+    video_label = int(last_line) + 1
 
-shutil.rmtree('./wavs', ignore_errors=True) # Delete if exists
-# Create dir for wavs
-os.mkdir('./wavs/')
+
+if not os.path.exists("./wavs/"): # Need to mkdir for wavs
+    # Create dir for wavs
+    os.mkdir('./wavs/')
+
 for item in data["videos"]:
-    csv_tag = item['speaker']
+    if(item["complete"] == "true"):
+        print("Skipping {}".format(item["id"]))
+        continue
+
+    csv_tag = item["speaker"]
     youtube_video = item["id"]
 
     my_script = YouTubeTranscriptApi.get_transcript(youtube_video)
@@ -44,6 +50,7 @@ for item in data["videos"]:
     to_write = []
     script_len=len(my_script)
 
+    # add complete to video_config.json so we don't repeat pulling video in future
 
     # print(script_len)
     for index, item in enumerate(my_script):
@@ -148,6 +155,10 @@ for item in data["videos"]:
 ## ----- Convert Wav Files To Mono Channel ----- ##
 print("Converting audio to single channel")
 for file in os.listdir('./wavs'):
+    if(file.find("stereo") == -1): # Skip wav files that have already been converted to single channel
+        print("Skipping ", file)
+        continue
+
     new_name = file.split("_")[1] # Convert from stereo_EXMPL-001.wav -> EXMPL-001.wav
     os.system("ffmpeg -hide_banner -loglevel error -i './wavs/{}' -ac 1 './wavs/{}'".format(file, new_name))
     os.system("rm ./wavs/{}".format(file))
@@ -158,5 +169,8 @@ for file in os.listdir('./wavs'):
 #     os.system("rm ./wavs/stereo_{}.wav".format(name))
 
 print("Completed converting audio to single channel. Any errors would have been reported before this message")
-os.system("rm wav")
+if os.path.exists("./wav"): # Need to mkdir for wavs
+    # Create dir for wavs
+    os.system("rm wav")
+
 # I need to solve how to add more wav files dynamically using the count
