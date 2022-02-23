@@ -1,0 +1,16 @@
+Stats for training
+Feb 22:
+ - MCDM 2971 wav files
+   Total training time 91 minutes 50 seconds
+   3 Models generated, Personal model score(1-100):
+   Model 1 - 0
+   Model 2 - 0
+   Model 3 - 0
+   Notes: Something seems to have gone wrong with the training, all 3 models that were generated are terrible
+   and are either generating a static note in an eery tone or skipping percussively. No discernable words can be heard.
+
+
+Current issues. I am currently dealing with not enough GPU RAM, causing my model trainings to fail. 
+Maybe I need to reduce the sample rate? That could lowers the file size possibly(also the quality) but cause 
+less not enough ram issues. Also, I have reduced the batch size on several occasions for various training methods
+but I would rather avoid that
