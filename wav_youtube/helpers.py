@@ -1,6 +1,7 @@
 #helper functions
 import shutil # For deleting directories that are not empty\
 import os
+import time as tm
 def start_fresh():
     # Delete metadata csv
     if os.path.exists("./metadata.csv"):
@@ -30,3 +31,10 @@ def get_most_recent_metadata_line():
 
 def get_total_audio_length():
     pass
+
+def run_training(run=False):
+    if(run == True):
+        print("-"*20)
+        print("Will start training a new model in 15 seconds")
+        tm.sleep(15)
+        os.system("time CUDA_VISIBLE_DEVICES=0 python /home/aqaz/Desktop/TTS/recipes/ljspeech/glow_tts/train_glowtts.py")

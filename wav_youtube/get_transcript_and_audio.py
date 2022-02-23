@@ -14,7 +14,17 @@ import datetime # for converting seconds into hrs:mins:scnds
 # Helper functions
 from helpers import *
 
-## ----- Get And Parse Transcript -----##
+## ----- Train after import? ----- ##
+print("NOTE: Don't run this script in VSCode's integrated terminal.")
+train_after = input("Would you like to train a new model after this script finishes? (yes) or (any other char)")
+if(train_after == "yes"):
+    print("Training will proceed afterwards")
+    train_after=True
+else:
+    print("No model will be trained after")
+    train_after=False
+
+## ----- Get And Parse Transcript ----- ##
 print("Getting and Parsing Youtube Transcript Into Metadata File")
 
 last_line = get_most_recent_metadata_line()
@@ -41,7 +51,7 @@ if not os.path.exists("./wavs/"): # Need to mkdir for wavs
 for item in data["videos"]:
     # Get the script for the video
     my_script = YouTubeTranscriptApi.get_transcript(item["id"])
-
+    tm.sleep(.7) # Micro sleep to not overload api calls to transcript api
     # Go to the last entry of the transcript. The start + the duration will tell us how long the video is
     total_audio_length += my_script[len(my_script)-1]["start"]
     total_audio_length += my_script[len(my_script)-1]["duration"]
@@ -58,8 +68,6 @@ for item in data["videos"]:
     to_write = []
     script_len=len(my_script)
 
-    print(my_script)
-    exit(1)
     # add complete to video_config.json so we don't repeat pulling video in future
 
     # print(script_len)
@@ -184,4 +192,6 @@ if os.path.exists("./wav"): # Need to mkdir for wavs
     os.system("rm wav")
 
 print("-"*10,"\nTotal audio length of wav files: {}".format(str(datetime.timedelta(seconds=total_audio_length))))
+
+run_training(train_after)
 # I need to solve how to add more wav files dynamically using the count
