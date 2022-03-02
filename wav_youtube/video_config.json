@@ -1,6 +1,6 @@
 {
     "videos": [
-        {"speaker": "MCDM","id": "LQsJSqn71Fw", "complete": "false"},
+        {"speaker": "MCDM","id": "LQsJSqn71Fw", "complete": "true"},
         {"speaker": "MCDM","id": "B15Sd0QiVzw", "complete": "true"},
         {"speaker": "MCDM","id": "e-YZvLUXcR8", "complete": "true"},
         {"speaker": "MCDM","id": "zTD2RZz6mlo", "complete": "true"},
@@ -14,6 +14,9 @@
         {"speaker": "MCDM","id": "tNElIpHBgxU", "complete": "true"},
         {"speaker": "MCDM","id": "Ja4y8xcihiw", "complete": "true"},
         {"speaker": "MCDM","id": "_MZ6NKDsjhg", "complete": "true"},
-        {"speaker": "MCDM","id": "jPRJDgTkXMI", "complete": "true"}
+        {"speaker": "MCDM","id": "jPRJDgTkXMI", "complete": "true"},
+        {"speaker": "MCDM","id": "4u3DWxPknYU", "complete": "true"},
+        {"speaker": "MCDM","id": "O7j1skECRV4", "complete": "true"},
+        {"speaker": "MCDM","id": "xZdS8lP-Sdo", "complete": "true"}
     ]
 }

@@ -80,7 +80,8 @@ for item in data["videos"]:
                 my_script[counter]["text"], 
                 (my_script[counter+1]["text"] if counter+1 < script_len else ""), # Ternary operators to not index past length of my_script
                 (my_script[counter+2]["text"] if counter+2 < script_len else "")
-            )
+            ).replace('\n', ' ')
+            # print("To print [{}]".format(to_print.replace('\n', '')))
             to_write.append(to_print)
             transcript_label+=1
             time_stamps.append(item["start"])
@@ -114,7 +115,7 @@ for item in data["videos"]:
             'preferredquality': '192'
         }],
         'postprocessor_args': [
-            '-ar', '22050' # Adjusted for training
+            '-ar', '20000' # Adjusted for training / Changed to 20000 for lower file size
         ],
         'prefer_ffmpeg': True,
         'keepvideo': False,
