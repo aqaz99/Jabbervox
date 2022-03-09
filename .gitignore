@@ -2,3 +2,4 @@ wav_youtube/wavs/*.wav
 wav_youtube/copies/*.wav
 wav_youtube/scripts/chopped
 flask/wavs
+/training_data

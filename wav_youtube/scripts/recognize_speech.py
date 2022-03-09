@@ -13,6 +13,7 @@
 #
 #
 from locale import normalize
+from math import floor
 from typing import Counter
 from unicodedata import name
 from pydub import AudioSegment, silence
@@ -36,16 +37,21 @@ def natural_sort(l):
 r = sr.Recognizer() 
 
 hillary_audio = AudioSegment.from_wav("/home/aqaz/Downloads/no_intro.wav")
-
+print("Total minutes in audio:",hillary_audio.duration_seconds/60)
 # print(hillary_audio.duration_seconds/60) # no_intro is 8 hours long, or 482 minutes
-
 t1 = 1 * 1000
 t2 = 60 * 1000
+
 # Chop up big wav into smaller, minute long wavs
 wavs = []
 chunks = []
-for i in range(20):
+for i in range(floor(hillary_audio.duration_seconds/60)):
     # wavs.append(hillary_audio[t1:t2]) # Slice by 60 seconds
+    print("Processing at", i)
+    # Last chunk
+    if(i >= hillary_audio.duration_seconds):
+        split_audio = split_on_silence(hillary_audio[t1:], min_silence_len=650, silence_thresh=-66)
+        break
 
     split_audio = split_on_silence(hillary_audio[t1:t2], min_silence_len=650, silence_thresh=-66)
 
@@ -107,7 +113,3 @@ for filename in natural_sort(os.listdir(directory)):
 
 print("Finished Creating Transcript and Metadata File")
 # f.close()
-
-
-
-

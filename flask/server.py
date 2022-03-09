@@ -1,5 +1,6 @@
-from flask import Flask, render_template, url_for, jsonify, make_response
+from flask import Flask, render_template, url_for, jsonify, make_response, send_file
 import json
+import os # for executing shell commands
 app = Flask(__name__)
 
 
@@ -38,7 +39,14 @@ def api():
 
 @app.route('/api/text_to_speech/<text>', methods=['GET'])
 def textToSpeech(text):
-    return make_response(text)
+    # The user can input the text with spaces in the URL and it will still work, %20 will be automatically added for spaces
+    os.system("bash ./scripts/generate_text.sh MCDM Mk.2-1200Lines model_1 from_api \"{}\"".format(text))
+    try:
+        return send_file('/home/aqaz/Desktop/Jabbervox/flask/wavs/MCDM/from_api.wav', attachment_filename='from_api.wav')
+    except Exception as e:
+        return str(e)
+
+    # return make_response(text)
 
 
 if __name__ == '__main__':
