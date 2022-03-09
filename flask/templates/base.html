@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <ul>
+        <li><a class="active" href="/">Home</a></li>
+        <li><a href="{{ url_for('speakers') }}">Speakers</a></li>
+        <li><a href="{{ url_for('conversations') }}">Conversations</a></li>
+        <li><a href="{{ url_for('howto') }}">How-To</a></li>
+      </ul>
+      <hr />
+      
+    {% block body %}{% endblock %}
+</body>
+</html>
