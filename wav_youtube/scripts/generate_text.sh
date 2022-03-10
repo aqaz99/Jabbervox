@@ -17,6 +17,16 @@ TEXT=$5
 PATHTOWAV=~/Desktop/Voices/outputs/$SPEAKER/$OUTPUTWAV.wav
 voice_path="~/Desktop/Voices"
 
+# Make directory if speaker does not have one yet
+if [ -d "~/Desktop/Voices/outputs/$SPEAKER" ] 
+then
+    echo "Found speaker directory" 
+else
+    echo "Creating speaker dir for $SPEAKER"
+    mkdir ~/Desktop/Voices/outputs/$SPEAKER
+fi
+
+
 touch $PATHTOWAV
 tts --text "$TEXT"\
  --model_path "$voice_path/$SPEAKER/$MODEL_DIR/$MODEL_NAME.pth.tar" \
