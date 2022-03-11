@@ -14,3 +14,17 @@ Current issues. I am currently dealing with not enough GPU RAM, causing my model
 Maybe I need to reduce the sample rate? That could lowers the file size possibly(also the quality) but cause 
 less not enough ram issues. Also, I have reduced the batch size on several occasions for various training methods
 but I would rather avoid that
+
+
+
+General training notes:
+When I convert the speech to text and then use a speech recognizer to determine what was said, the accuracy is about 90%,
+so there is inherently some error in the training data. The recognizer has a much easier time with Hillary Clintons voice but
+often times struggles to determine what Obama said. So I combed through parts of the metadata file for Obama and corrected errors.
+It typically had issues detecting the beggining words for sentences and very often dropped the word 'the'. 
+Also, it has about 70% accuracy for determining:
+ - 'the' vs 'a'
+ - 'or' vs 'our' vs 'for'
+ - 'I've been' vs 'often'
+
+Other notes: Recognizer interpreted the word 'tootoo' as '22'
