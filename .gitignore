@@ -3,3 +3,4 @@ wav_youtube/copies/*.wav
 wav_youtube/scripts/chopped
 flask/wavs
 /training_data/**/wavs
+wav_youtube/scripts/jabbervox-4f38518a0c72.json
