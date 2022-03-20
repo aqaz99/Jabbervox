@@ -14,8 +14,17 @@ MODEL_NAME=$3
 OUTPUTWAV=$4
 TEXT=$5
 
-PATHTOWAV=~/Desktop/Jabbervox/flask/wavs/$SPEAKER/$OUTPUTWAV.wav
-voice_path="~/Desktop/Voices"
+# Make directory if speaker does not have one yet
+if [ -d "./voices/outputs/$SPEAKER" ] 
+then
+    echo "Found speaker directory" 
+else
+    echo "Creating speaker dir for $SPEAKER"
+    mkdir ./voices/outputs/$SPEAKER
+fi
+
+PATHTOWAV=./output/wavs/$SPEAKER/$OUTPUTWAV.wav
+voice_path="./voices"
 
 touch $PATHTOWAV
 tts --text "$TEXT"\
