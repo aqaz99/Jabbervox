@@ -64,6 +64,11 @@ def textToSpeech():
 
     return make_response(speaker+": "+text)
 
+@app.route('/api/pull', methods=['GET'])
+def api():
+    os.system("git pull")
+    headers = {"Content-Type": "application/json"}
+    return make_response(200, headers)
 
 if __name__ == '__main__':
     app.run(debug=True,host="0.0.0.0")
