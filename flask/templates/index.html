@@ -6,4 +6,17 @@
 
 {% block body %}
 <h1>Hello from index</h1>
+<br>
+<form method="POST">
+    <select name="speaker_dropdown" method="GET" action="/">
+        {% for speaker in speakers %}
+            <option value="{{speaker}}" SELECTED>{{speaker}}</option>"
+        {% endfor %}
+    </select>
+    <br>
+    <input name="text">
+    <input type="submit">
+</form>
+<br>
+<p>{{ to_display }}</p>
 {% endblock %}

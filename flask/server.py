@@ -1,13 +1,22 @@
-from flask import Flask, render_template, url_for, jsonify, make_response, send_file
+import re
+from flask import Flask, render_template, url_for, jsonify, make_response, send_file, request
 import json
 import os # for executing shell commands
 app = Flask(__name__)
 
-
+speakers_list = ["Matt Colville", "Hillary Clinton", "Barack Obama"]
 # First flask route, landing page
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def index():
-    return render_template('index.html')
+    processed_text = ""
+    # Display text in page 
+    if(request.method == "POST"):
+        text = request.form['text']
+        speaker = request.form.get('speaker_dropdown')
+        processed_text = "Text to generate:" + speaker + " - " + text.upper()
+        print(processed_text)
+    return render_template('index.html', speakers=speakers_list, to_display=processed_text)
+
 
 # Speakers
 @app.route('/speakers')
