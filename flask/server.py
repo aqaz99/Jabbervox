@@ -46,8 +46,15 @@ def api():
     return make_response(data, 200, headers)
 
 
-@app.route('/api/text_to_speech/<text>', methods=['GET'])
-def textToSpeech(text):
+@app.route('/api/text_to_speech', methods=['GET'])
+def textToSpeech():
+    speaker = request.args.get('speaker')
+    if(not speaker):
+        speaker = "Default"
+    text = request.args.get('text')
+    if(not text):
+        text = "Hello from default text!"
+    
     # The user can input the text with spaces in the URL and it will still work, %20 will be automatically added for spaces
     os.system("bash ./scripts/generate_text.sh MCDM Mk.2-1200Lines model_1 from_api \"{}\"".format(text))
     try:
@@ -55,7 +62,7 @@ def textToSpeech(text):
     except Exception as e:
         return str(e)
 
-    # return make_response(text)
+    return make_response(speaker+": "+text)
 
 
 if __name__ == '__main__':
