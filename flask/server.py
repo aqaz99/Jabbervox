@@ -12,10 +12,12 @@ conversation = {}
 def index():
     global conversation
     processed_text = ""
+    speaker_choice = ""
     # Display text in page 
     if(request.method == "POST"):
         # Get speaker
         speaker = request.form.get('speaker_dropdown')
+        speaker_choice = speaker
         if(speaker == "Hillary Clinton"):
             speaker = "HLCL"
         else:
@@ -42,7 +44,7 @@ def index():
         #     return send_file(f'./outputs/{speaker_one}/from_api.wav', download_name='from_api.wav', as_attachment=True)
         # except Exception as e:
         #     return str(e)
-    return render_template('index.html', speakers=speakers_list, to_display=processed_text, conversation_full=conversation)
+    return render_template('index.html', speakers=speakers_list, to_display=processed_text, conversation_full=conversation, speaker_choice=speaker_choice)
 
 
 # Speakers

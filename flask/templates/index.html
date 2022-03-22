@@ -10,7 +10,7 @@
 <form method="POST">
     <select name="speaker_dropdown" method="GET" action="/">
         {% for speaker in speakers %}
-            <option value="{{speaker}}" SELECTED>{{speaker}}</option>"
+            <option value="{{speaker}}" {% if speaker == speaker_choice %} SELECTED {% endif %}>{{speaker}}</option>
         {% endfor %}
     </select>
     <br>
