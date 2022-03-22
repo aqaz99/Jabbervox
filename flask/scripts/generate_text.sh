@@ -3,14 +3,15 @@
 # Path to voices
 
 # Usage
-if [ "$#" -ne 3 ]; then
-    echo "Usage: generate_text.bash     speaker_id      wav_name     text_to_generate"
+if [ "$#" -ne 4 ]; then
+    echo "Usage: generate_text.bash     speaker_id      wav_name     text_to_generate     conversation(true/false)"
     exit
 fi
 
 SPEAKER=$1
 OUTPUTWAV=$2
 TEXT=$3
+CONVERSATION=$4
 
 # Make directory if speaker does not have one yet
 if [ -d "./outputs/$SPEAKER" ] 
@@ -21,11 +22,17 @@ else
     mkdir ./outputs/$SPEAKER
 fi
 
-PATHTOWAV=./outputs/$SPEAKER/$OUTPUTWAV.wav
+if [ $CONVERSATION == "true" ]
+then
+    PATHTOWAV=./outputs/conversation/$OUTPUTWAV.wav
+else
+    PATHTOWAV=./outputs/$SPEAKER/$OUTPUTWAV.wav
+fi
+
 voice_path="./voices"
-echo "HELO"
-echo $PATHTOWAV
-echo "GOODBYE"
+# echo "HELO"
+# echo $PATHTOWAV
+# echo "GOODBYE"
 touch $PATHTOWAV
 tts --text "$TEXT"\
  --model_path "$voice_path/$SPEAKER/best_model.pth.tar" \

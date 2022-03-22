@@ -20,8 +20,8 @@ def index():
             speaker = "HLCL"
         else:
             speaker = "BKOB"
-        # Generate and return wav file to user
-        os.system("bash ./scripts/generate_text.sh {} from_api \"{}\"".format(speaker, text))
+        # Generate and return wav file to user # False is to not generate convo
+        os.system("bash ./scripts/generate_text.sh {} from_api \"{}\" false".format(speaker, text))
         try:
             return send_file(f'./outputs/{speaker}/from_api.wav', download_name='from_api.wav', as_attachment=True)
         except Exception as e:
