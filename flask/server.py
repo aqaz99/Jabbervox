@@ -2,31 +2,47 @@ import re
 from flask import Flask, render_template, url_for, jsonify, make_response, send_file, request
 import json
 import os # for executing shell commands
+from make_conversation import *
 app = Flask(__name__)
 
-speakers_list = ["Matt Colville", "Hillary Clinton", "Barack Obama"]
+speakers_list = ["Hillary Clinton", "Barack Obama"]
 # First flask route, landing page
+conversation = {}
 @app.route('/', methods=['GET','POST'])
 def index():
+    global conversation
     processed_text = ""
     # Display text in page 
     if(request.method == "POST"):
-        text = request.form['text']
+        # Get speaker
         speaker = request.form.get('speaker_dropdown')
-        processed_text = "Text to generate:" + speaker + " - " + text.upper()
-        print(processed_text)
-
-        if(speaker == speakers_list[1]):
+        if(speaker == "Hillary Clinton"):
             speaker = "HLCL"
         else:
             speaker = "BKOB"
+
+        current_step = len(conversation)
+        
+        # Get first speaker text
+        if("speaker" in request.form): # Did they provide text?
+            first_speaker_text = request.form['speaker']
+
+            if(first_speaker_text != ""):
+                speaker_processed_text = "Text to generate:" + speaker + " - " + first_speaker_text.upper()
+                conversation[f"{current_step}-{speaker}"] = first_speaker_text
+
+        if("generate" in request.form and current_step > 0): # They want to generate the conversation
+            make_conversation(conversation)
+            conversation.clear()
+            return send_file(f'./outputs/conversation/conversation.wav', download_name='conversation.wav', as_attachment=True)
+
         # Generate and return wav file to user # False is to not generate convo
-        os.system("bash ./scripts/generate_text.sh {} from_api \"{}\" false".format(speaker, text))
-        try:
-            return send_file(f'./outputs/{speaker}/from_api.wav', download_name='from_api.wav', as_attachment=True)
-        except Exception as e:
-            return str(e)
-    return render_template('index.html', speakers=speakers_list, to_display=processed_text)
+        # os.system("bash ./scripts/generate_text.sh {} from_api \"{}\" false".format(speaker_one, first_speaker_text))
+        # try:
+        #     return send_file(f'./outputs/{speaker_one}/from_api.wav', download_name='from_api.wav', as_attachment=True)
+        # except Exception as e:
+        #     return str(e)
+    return render_template('index.html', speakers=speakers_list, to_display=processed_text, conversation_full=conversation)
 
 
 # Speakers

@@ -31,8 +31,10 @@ ul {
     }
     li {
       border-right: 1px solid #bbb;
+      float:left;
     }
 
     li:last-child {
       border-right: 1px solid #bbb;;
     }
+

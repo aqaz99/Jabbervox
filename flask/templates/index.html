@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block head %}
-
 {% endblock %}
 
 {% block body %}
 <h1>Hello from index</h1>
 <br>
+<p>Speaker Selection</p>
 <form method="POST">
     <select name="speaker_dropdown" method="GET" action="/">
         {% for speaker in speakers %}
@@ -14,10 +14,24 @@
         {% endfor %}
     </select>
     <br>
-    <input name="text">
+    <input name="speaker">
     <input type="submit">
 </form>
 <br>
-<p>Small change to changes</p>
-<p>{{ to_display }}</p>
+<p><strong>Current Conversation</strong></p>
+
+<table>
+      <tbody>
+        {% for convo_piece in conversation_full %}
+        <tr>
+          <td>{{ convo_piece }}: {{ conversation_full[convo_piece] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+</table>
+
+<form method="POST">
+    <br>
+    <input type="submit" value="Generate Conversation" name="generate" onclick="loading();">
+</form>
 {% endblock %}
