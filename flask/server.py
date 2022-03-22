@@ -15,6 +15,17 @@ def index():
         speaker = request.form.get('speaker_dropdown')
         processed_text = "Text to generate:" + speaker + " - " + text.upper()
         print(processed_text)
+
+        if(speaker == speakers_list[1]):
+            speaker = "HLCL"
+        else:
+            speaker = "BKOB"
+        # Generate and return wav file to user
+        os.system("bash ./scripts/generate_text.sh {} from_api \"{}\"".format(speaker, text))
+        try:
+            return send_file(f'./outputs/{speaker}/from_api.wav', download_name='from_api.wav', as_attachment=True)
+        except Exception as e:
+            return str(e)
     return render_template('index.html', speakers=speakers_list, to_display=processed_text)
 
 
@@ -49,20 +60,25 @@ def api():
 @app.route('/api/text_to_speech', methods=['GET'])
 def textToSpeech():
     speaker = request.args.get('speaker')
+    speaker = speaker.replace("\"","")
+
     if(not speaker):
-        speaker = "Default"
+        print("--- No speaker was given! ---")
+        speaker = "HLCL"
+
     text = request.args.get('text')
+    text = text.replace("\"","")
+    print(text)
     if(not text):
+        print("--- No text was given! ---")
         text = "Hello from default text!"
     
     # The user can input the text with spaces in the URL and it will still work, %20 will be automatically added for spaces
-    os.system("bash ./scripts/generate_text.sh MCDM Mk.2-1200Lines model_1 from_api \"{}\"".format(text))
+    os.system("bash ./scripts/generate_text.sh {} from_api \"{}\"".format(speaker, text))
     try:
-        return send_file('/home/aqaz/Desktop/Jabbervox/flask/wavs/MCDM/from_api.wav', attachment_filename='from_api.wav')
+        return send_file(f'./outputs/{speaker}/from_api.wav', download_name='from_api.wav')
     except Exception as e:
         return str(e)
-
-    return make_response(speaker+": "+text)
 
 @app.route('/api/pull', methods=['GET'])
 def gitPull():
