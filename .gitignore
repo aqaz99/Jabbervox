@@ -9,3 +9,4 @@ flask/outputs/**/*.wav
 /training_data/HLCL/wavs/
 /training_data/MCDM/wavs/
 __pycache__/
+env/

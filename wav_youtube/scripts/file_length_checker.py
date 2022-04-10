@@ -10,7 +10,7 @@ def natural_sort(l):
     alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key)] 
     return sorted(l, key=alphanum_key)
 
-speaker = 'HLCL'
+speaker = 'BKOB'
 directory = '/home/aqaz/Desktop/Jabbervox/training_data/' + speaker
 
 count = 0
