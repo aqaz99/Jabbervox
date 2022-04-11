@@ -104,7 +104,7 @@ def gitPull():
     headers = {"Content-Type": "application/json"}
     return make_response("Got changes",200, headers)
 
-# if __name__ == '__main__':
-#     app.run(debug=True,host="0.0.0.0")
+if __name__ == '__main__':
+    app.run(debug=True,host="0.0.0.0")
 
 application = app

@@ -12,7 +12,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-runtime: python39
+runtime: custom
+env: flex
+entrypoint: gunicorn -b :$PORT main:app
+
+runtime_config:
+    python_version: 3
+env_variables:
+    CLOUD_STORAGE_BUCKET: 
+manual_scaling:
+  instances: 1
+resources:
+  cpu: 2
+  memory_gb: 2.0
+  disk_size_gb: 40
+  volumes:
+  - name: ramdisk1
+    volume_type: tmpfs
+    size_gb: 1
+
 
 handlers:
   # This configures Google App Engine to serve the files in the app's static
