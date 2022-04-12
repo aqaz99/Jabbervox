@@ -4,27 +4,24 @@
 {% endblock %}
 
 {% block body %}
-<h1>Hello from index</h1>
-<br>
-<p>Speaker Selection</p>
 <form method="POST">
-    <select name="speaker_dropdown" method="GET" action="/">
+    <select class="dropdown-item text-white"name="speaker_dropdown" method="GET" action="/">
         {% for speaker in speakers %}
             <option value="{{speaker}}" {% if speaker == speaker_choice %} SELECTED {% endif %}>{{speaker}}</option>
         {% endfor %}
     </select>
     <br>
     <input name="speaker">
-    <input type="submit">
+    <input class="text-success" type="submit">
 </form>
 <br>
-<p><strong>Current Conversation</strong></p>
+<h3><strong>Current Conversation</strong></h3>
 
 <table>
       <tbody>
         {% for convo_piece in conversation_full %}
         <tr>
-          <td>{{ convo_piece }}: {{ conversation_full[convo_piece] }}</td>
+          <td class="text-success"><h3>{{ convo_piece }}: {{ conversation_full[convo_piece] }}</h3></td>
         </tr>
         {% endfor %}
       </tbody>
@@ -32,6 +29,6 @@
 
 <form method="POST">
     <br>
-    <input type="submit" value="Generate Conversation" name="generate" onclick="loading();">
+    <input class="text-success" type="submit" value="Generate Conversation" name="generate" onclick="loading();">
 </form>
 {% endblock %}
