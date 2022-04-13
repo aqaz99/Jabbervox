@@ -3,6 +3,7 @@ wav_youtube/copies/*.wav
 wav_youtube/scripts/chopped
 flask/wavs
 /training_data/**/wavs
+/training_data/**/wavs (copy)
 wav_youtube/scripts/jabbervox-4f38518a0c72.json
 flask/outputs/**/*.wav
 /training_data/BKOB/wavs/

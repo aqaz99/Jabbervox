@@ -9,7 +9,7 @@
 
 # Steps to convert aax to wav file
 # 1. Get key https://audible-converter.ml/
-# 2. ffmpeg -activation_bytes b5b70d07 -i WhatHappenedPart1_ep5.aax test2.wav #-ar 20000 # -ar is bitrate but it didn't make the file smaller
+# 2. ffmpeg -activation_bytes b5b70d07 -i WhatHappenedPart1_ep5.aax test2.wav #-ar 22050 # -ar is bitrate but it didn't make the file smaller
 #
 #
 from locale import normalize
@@ -20,88 +20,89 @@ from pydub import AudioSegment, silence
 import speech_recognition as sr
 from helpers import *
 from pydub.silence import split_on_silence
-import os
-import re # Natural sorting
-
-# Need to sort filenames when creating csv file
-def natural_sort(l): 
-    convert = lambda text: int(text) if text.isdigit() else text.lower() 
-    alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key)] 
-    return sorted(l, key=alphanum_key)
 
 r = sr.Recognizer() 
 
 # ----- Enter Custom Speaker Config Here! ----- #
-speaker_id = "BKOB"
-speaker_audio = AudioSegment.from_wav("/home/aqaz/Downloads/obama1.wav")
-print("Total minutes in audio:",speaker_audio.duration_seconds/60)
-
-# t1 can also be the first cutoff point
-t1 = 13 * 1000 # Beginning audio slice
-t2 = 60 * 1000 # Ending audio slice
-
-# Chop up big wav into smaller, minute long wavs
-wavs = []
-chunks = []
-for i in range(floor(speaker_audio.duration_seconds/60)): # floor(speaker_audio.duration_seconds/60)
-    print("Processing at", i)
-    # Last chunk
-    if(i >= speaker_audio.duration_seconds):
-        split_audio = split_on_silence(speaker_audio[t1:], min_silence_len=650, silence_thresh=-66)
-        break
-
-    split_audio = split_on_silence(speaker_audio[t1:t2], min_silence_len=650, silence_thresh=-66)
-
-    # Don't add empty files or too short audio to chunks
-    if(split_audio):
-        for item in split_audio:
-            if(item.duration_seconds != 0):
-                chunks.append(item)
-    t1 = t2
-    t2 = 60 * (i+1) * 1000
-
-print("Done processing file")
-
-print("Got",len(chunks),"total chunks")
+speaker_id = "LAFB"
+speaker_audio = AudioSegment.from_wav("/home/aqaz/Downloads/laurence.wav")
 
 # ----- Create speaker directory ----- #
 directory = '../../training_data/{}'.format(speaker_id)
-
 if not os.path.exists(directory): # Need to mkdir for wavs
     # Create dir for wavs
     os.mkdir(directory)
     os.mkdir(directory+"/wavs") # Make wavs dir too
 
 
-# ----- Export Chopped Audio Files ----- #
-silence_chunk = AudioSegment.silent(duration=200)
-appended = False
-name_counter = 0
-# Export chopped audio to file, if audio is too short, append to another
-for index, chunk in enumerate(chunks):
-    if(appended): # If we appended this audio clip to the previous, skip it
-        appended = False
-        continue
-    file_name = "{}/wavs/{}-{}.wav".format(directory, speaker_id,name_counter, iter)
-    name_counter += 1
-    if(chunk.duration_seconds < 2.5 and index < len(chunks)-1):
-        # print("Appending two wavs {} + {}".format(chunk.duration_seconds, chunks[index+1].duration_seconds))
-        appended_audio = chunk + silence_chunk + chunks[index+1]
-        appended_audio.export(file_name, format="wav") 
-        appended = True
-        continue
-
-    # print("silencing ", file_name, " Length = ", chunk.duration_seconds)
-    chunk.export(file_name, format="wav") 
+name_counter = int(get_most_recent_metadata_line(speaker_id))
+print("Total minutes in audio:",speaker_audio.duration_seconds/60)
 
 
-print("Creating metadata.csv")
-# assign directory
+# # t1 can also be the first cutoff point
+# t1 = 13 * 1000 # Beginning audio slice
+# t2 = 60 * 1000 # Ending audio slice
 
- 
+# # Chop up big wav into smaller, minute long wavs
+# wavs = []
+# chunks = []
+# for i in range(floor(speaker_audio.duration_seconds/60)): # floor(speaker_audio.duration_seconds/60)
+#     print("Processing at", i)
+#     # Last chunk
+#     if(i >= speaker_audio.duration_seconds):
+#         split_audio = split_on_silence(speaker_audio[t1:], min_silence_len=650, silence_thresh=-66)
+#         break
+
+#     split_audio = split_on_silence(speaker_audio[t1:t2], min_silence_len=650, silence_thresh=-66)
+
+#     # Don't add empty files or too short audio to chunks
+#     if(split_audio):
+#         for item in split_audio:
+#             if(item.duration_seconds != 0):
+#                 chunks.append(item)
+#     t1 = t2
+#     t2 = 60 * (i+1) * 1000
+
+# print("Done processing file")
+
+# print("Got",len(chunks),"total chunks")
+
+
+
+# # ----- Export Chopped Audio Files ----- #
+# silence_chunk = AudioSegment.silent(duration=200)
+# appended = False
+# # Get most recent meta data line for counter
+
+# # Export chopped audio to file, if audio is too short, append to another
+# for index, chunk in enumerate(chunks):
+#     if(appended): # If we appended this audio clip to the previous, skip it
+#         appended = False
+#         continue
+#     file_name = "{}/wavs/{}-{}.wav".format(directory, speaker_id,name_counter, iter)
+#     name_counter += 1
+#     if(chunk.duration_seconds < 2.5 and index < len(chunks)-1):
+#         # print("Appending two wavs {} + {}".format(chunk.duration_seconds, chunks[index+1].duration_seconds))
+#         appended_audio = chunk + silence_chunk + chunks[index+1]
+#         appended_audio.export(file_name, format="wav") 
+#         appended = True
+#         continue
+
+#     # print("silencing ", file_name, " Length = ", chunk.duration_seconds)
+#     chunk.export(file_name, format="wav") 
+
+
+# print("Creating metadata.csv")
+# # assign directory
+
+# time.sleep(60)
 # iterate over files in
 # that directory
 for filename in natural_sort(os.listdir(directory+'/wavs')):
+    get_last_file_num = int(filename.split("-")[1].split(".")[0])
+    if(get_last_file_num <= name_counter):
+        continue
+
     f = os.path.join(directory+'/wavs', filename)
     # checking if it is a file
     if os.path.isfile(f):
@@ -116,7 +117,7 @@ for filename in natural_sort(os.listdir(directory+'/wavs')):
 
         # Write to text file EXAMPLE-001|Example text here
         f = open("../../training_data/{}/metadata.csv".format(speaker_id), "a")
-        f.write("{}|{}\n".format(filename.split('.')[0], recognized_speech))
+        f.write("{}||{}\n".format(filename.split('.')[0], recognized_speech))
 
 print("Finished Creating Transcript and Metadata File")
 # f.close()

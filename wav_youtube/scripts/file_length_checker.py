@@ -10,7 +10,7 @@ def natural_sort(l):
     alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key)] 
     return sorted(l, key=alphanum_key)
 
-speaker = 'BKOB'
+speaker = 'LAFB'
 directory = '/home/aqaz/Desktop/Jabbervox/training_data/' + speaker
 
 count = 0
@@ -33,7 +33,7 @@ with open('/home/aqaz/Desktop/Jabbervox/training_data/{}/metadata.csv'.format(sp
 for index, line in enumerate(data):
     for offender in to_trim:
         if(line.split('|')[0] == offender):
-            print("Removing line {} from file".format(index))
+            print("Removing line {} from file".format(offender))
             data[index] = ""
 
 with open('/home/aqaz/Desktop/Jabbervox/training_data/{}/metadata.csv'.format(speaker), 'w', encoding='utf-8') as file:

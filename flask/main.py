@@ -67,7 +67,7 @@ def howto():
 @app.route('/api', methods=['GET'])
 def api():
     # Load in local data
-    with open('../wav_youtube/video_config.json') as file:
+    with open('./video_config.json') as file:
         data = json.load(file)
         print(data)
 
