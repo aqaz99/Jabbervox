@@ -23,16 +23,20 @@ from pydub.silence import split_on_silence
 
 r = sr.Recognizer() 
 
+
 # ----- Enter Custom Speaker Config Here! ----- #
 speaker_id = "LAFB"
-speaker_audio = AudioSegment.from_wav("/home/aqaz/Downloads/laurence.wav")
 
 # ----- Create speaker directory ----- #
 directory = '../../training_data/{}'.format(speaker_id)
+
 if not os.path.exists(directory): # Need to mkdir for wavs
     # Create dir for wavs
     os.mkdir(directory)
     os.mkdir(directory+"/wavs") # Make wavs dir too
+
+
+speaker_audio = AudioSegment.from_wav("/home/aqaz/Downloads/laurence.wav")
 
 
 name_counter = int(get_most_recent_metadata_line(speaker_id))

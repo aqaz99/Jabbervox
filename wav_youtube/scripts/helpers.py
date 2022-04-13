@@ -4,6 +4,7 @@ import os
 import time as tm
 import re
 from pydub import AudioSegment
+from pydub.utils import mediainfo
 
 # Need to sort filenames when creating csv file
 def natural_sort(l): 
@@ -53,8 +54,17 @@ def run_training(run=False):
         tm.sleep(15)
         os.system("time CUDA_VISIBLE_DEVICES=0 python /home/aqaz/Desktop/TTS/recipes/ljspeech/glow_tts/train_glowtts.py")
 
-# def convertToSingleChannel(directory):
-#     for filename in natural_sort(os.listdir(directory+'/wavs')):
-#         sound = AudioSegment.from_wav("/path/to/file.wav")
-#         sound = sound.set_channels(1)
-#         sound.export("/output/path.wav", format="wav")
+# Change to single channel and also set sample rate
+def convertToSingleChannelAndSampleRate(directory):
+    for filename in natural_sort(os.listdir(directory+'/wavs')):
+        # print(filename)
+        sound = AudioSegment.from_wav(directory+'/wavs/'+filename)
+        # print(directory+'/wavs/SINGLE-'+filename)
+        sound = sound.set_channels(1)
+        sound = sound.set_frame_rate(22050)
+        sound.export(directory+'/single/'+filename, format="wav")
+    
+def printMediaInfo(directory):
+    for filename in natural_sort(os.listdir(directory+'/single')):
+        info = mediainfo(directory+'/single/'+filename)
+        print(info)
