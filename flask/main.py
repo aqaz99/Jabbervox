@@ -5,7 +5,7 @@ import os # for executing shell commands
 from make_conversation import *
 app = Flask(__name__)
 
-speakers_list = ["Hillary Clinton", "Barack Obama"]
+speakers_list = ["Hillary Clinton", "Barack Obama", "Laurence Fishburne"]
 # First flask route, landing page
 conversation = {}
 @app.route('/', methods=['GET','POST'])
@@ -17,11 +17,14 @@ def index():
     if(request.method == "POST"):
         # Get speaker
         speaker = request.form.get('speaker_dropdown')
+        print(speaker)
         speaker_choice = speaker
         if(speaker == "Hillary Clinton"):
             speaker = "HLCL"
-        else:
+        elif(speaker == "Barack Obama"):
             speaker = "BKOB"
+        elif(speaker == "Laurence Fishburne"):
+            speaker = "LAFB"
 
         current_step = len(conversation)
         

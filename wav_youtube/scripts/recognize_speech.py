@@ -9,7 +9,7 @@
 
 # Steps to convert aax to wav file
 # 1. Get key https://audible-converter.ml/
-# 2. ffmpeg -activation_bytes b5b70d07 -i WhatHappenedPart1_ep5.aax test2.wav #-ar 22050 # -ar is bitrate but it didn't make the file smaller
+# 2. ffmpeg -activation_bytes b5b70d07 -i WhatHappenedPart1_ep5.aax test2.wav -ac 1 #-ar 22050 # -ar is bitrate but it didn't make the file smaller
 #
 #
 from locale import normalize
