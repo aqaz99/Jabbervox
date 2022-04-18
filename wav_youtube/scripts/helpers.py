@@ -68,3 +68,16 @@ def printMediaInfo(directory):
     for filename in natural_sort(os.listdir(directory+'/single')):
         info = mediainfo(directory+'/single/'+filename)
         print(info)
+
+def checkHowManyChannels(directory):
+    for filename in natural_sort(os.listdir(directory)):
+        if(filename.split(".")[1] == "wav"):
+            print(filename)
+            sound = AudioSegment.from_wav(directory+'/'+filename)
+            # print(directory+'/wavs/SINGLE-'+filename)
+            print(sound.channels)
+            # sound = sound.set_channels(1)
+            # sound = sound.set_frame_rate(22050)
+            # sound.export(directory+'/single_'+ filename, format="wav")
+    
+checkHowManyChannels("/home/aqaz/Downloads/")

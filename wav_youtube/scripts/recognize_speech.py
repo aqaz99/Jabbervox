@@ -25,7 +25,7 @@ r = sr.Recognizer()
 
 
 # ----- Enter Custom Speaker Config Here! ----- #
-speaker_id = "LAFB"
+speaker_id = "NDGT"
 
 # ----- Create speaker directory ----- #
 directory = '../../training_data/{}'.format(speaker_id)
@@ -36,7 +36,7 @@ if not os.path.exists(directory): # Need to mkdir for wavs
     os.mkdir(directory+"/wavs") # Make wavs dir too
 
 
-speaker_audio = AudioSegment.from_wav("/home/aqaz/Downloads/laurence.wav")
+speaker_audio = AudioSegment.from_wav("/home/aqaz/Downloads/tyson_short.wav")
 
 
 name_counter = int(get_most_recent_metadata_line(speaker_id))
