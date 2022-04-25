@@ -15,23 +15,23 @@ import datetime # for converting seconds into hrs:mins:scnds
 from helpers import *
 
 ## ----- Train after import? ----- ##
-print("NOTE: Don't run this script in VSCode's integrated terminal.")
-train_after = input("Would you like to train a new model after this script finishes? (yes) or (any other char)")
-if(train_after == "yes"):
-    print("Training will proceed afterwards")
-    train_after=True
-else:
-    print("No model will be trained after")
-    train_after=False
-
+# print("NOTE: Don't run this script in VSCode's integrated terminal.")
+# train_after = input("Would you like to train a new model after this script finishes? (yes) or (any other char)")
+# if(train_after == "yes"):
+#     print("Training will proceed afterwards")
+#     train_after=True
+# else:
+#     print("No model will be trained after")
+#     train_after=False
+train_after=False
 ## ----- Get And Parse Transcript ----- ##
 print("Getting and Parsing Youtube Transcript Into Metadata File")
-
-last_line = get_most_recent_metadata_line()
+speaker_id = "NDGTYT"
+last_line = get_most_recent_metadata_line(speaker_id)
 
 # Exaple of returned json 
 #  {'text': "worried and desperate he hasn't given", 'start': 278.78, 'duration': 3.84}
-with open("./video_config.json") as file:
+with open("../video_config.json") as file:
     data = json.load(file)
 
 if(last_line == ""):

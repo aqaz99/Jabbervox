@@ -80,4 +80,3 @@ def checkHowManyChannels(directory):
             # sound = sound.set_frame_rate(22050)
             # sound.export(directory+'/single_'+ filename, format="wav")
     
-checkHowManyChannels("/home/aqaz/Downloads/")

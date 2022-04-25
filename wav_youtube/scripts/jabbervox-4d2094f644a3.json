@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "jabbervox",
+  "private_key_id": "4d2094f644a3846cfe4cd0058dde17f3cd2b40ee",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDLdAFaGn6wnrLm\nLiQ8dSKRCZGGqGjcyo4ygkai/iQT14MiTwfesGttqTyqkFZVaCyy+o4snKOr2gte\nDk+Tyv7Y0lUOt+hixlMGYhSyRVGxn8JPzWYubyn/25kRjif5L4sYil3Uslz37PsV\nH/eCGmFl8DGufB91in6pRoJVahef7imi3pjErONpv+Xz/dfJREqOUtBycR2j4/gm\ngJWvZOw6lUKf1KLVatP6gL5//F7ZbnwIHlx5hsvHJvERL2FnEjVVqPx9DKLY5UzO\n53H6bqVBBG2Ywi/wXe3ZIzF7oK/nCelCu+P63Ur05f8L0uRaoRXgz2e0/AZNYSoS\nStpQDjO7AgMBAAECggEASM650SHcJp6UTPVEOHJ+rUKsVnEcHa9LFd4zIw8poAQm\nxHddzJ57w2Gl+S/wBV5jaKVrjaF8nPpJyR378lrZuoQCtmKwAfERMx6UY3uVEain\nY+GQaJuVfx959qNVwMH32A9kJsKxrHOdIuEutNt18YH0dYmrxGeMjk1SRPjTfYKc\n7C39WOWoWccXt3H7YHWfGrg1fTHyw2wYpExYSMLueHk8pJaTKzOZ/7N3CWacET/6\n1RYQmlsbJDxtm8VpWaE0hn1ZVp91IqGA81dmRnZYNdoA8au6rIpoSWzZ2eGyKZzt\ne5jIraekedMq++gXMaTylpK7iMcSeRhKqB8xOuXVkQKBgQDrthsphYgLEbgZRe8H\nGS+G/Oe5zHZLvGdzlr/m8tVjZBxTGV6CFI2YyN1U93TFFeq67x3kONfoqSIPlHy7\n3qzaDGWtMCt/j2JGNghuVfyOKl05KfsCW4HFfWWoBcJVwgRQK7Ca9xhgVeS7FkU+\nUsMJ/jgaJOByVA5nqDQEh5W5aQKBgQDc9xcjriSfw6x8hZvHezTqKU2ofDkw9nxa\nd55m1dlzjySlMWUdCJ0qkP2ZOXCx5jmrlSTz2sea8MpHCAW70lpaJLVd/ijSfXOS\n9ekdfd0b2zzvKrZ+2BOQ/BkELMA8ZYrGvl0z4KwrdCprNdgwZdkLa8XbL28UFjJ8\nM6UEEEhbgwKBgQDkg7fxmTM7CAKi/dmt2AzroWRGDKLi6dShixSgoeueX//V0FJ/\nac2cwZ9SMFVUfNsEP62LBFDNjqsmz53dxRNukXZBYOHK2Qc9akTiMxqV+RxHvxtK\nPcyh2eAj9PFikqX7019z3PoU6zDE7+JReYr8tSlOr1GphTQx6jAD9C6DgQKBgQCq\nihYU1rGzkN0OWjxJ8KB9XZVvRTkKviJp3EqoCcLDuqXIzV/B0cUjdjYUTU3aL9sw\nv3J+tss5nUAxJFLwjEBptE06lw/ArUxHD3504ZCGkGXuHSQur+wiCT/xhex0cNZz\n37aldHDNNOIMTsllSSYD95EEQw7TDPK4A1AH291MqwKBgQC+TIX3E+Ufyvc9kgX7\nCardwtHQHWLWt5PL2Gxpo/EjSmihsE55/ktjSUs3F0QXHo227eq3cEdU47ySMmAF\nHTJx7xaP3zz3hTsA1+BdqqEq4fkq+jRGHQ8b+rlaKYnqJl0CfRuYe1wO4asC5PzF\nRnTpE4gJ0i3Om6v6uocpqhLIIg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "jabbervox-svc@jabbervox.iam.gserviceaccount.com",
+  "client_id": "110787131905184873443",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/jabbervox-svc%40jabbervox.iam.gserviceaccount.com"
+}
