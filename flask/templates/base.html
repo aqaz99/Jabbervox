@@ -19,24 +19,33 @@
           </button>
       
           <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav me-auto">
+            <ul class="navbar-nav me-auto navbar-expand-lg">
               <li class="nav-item">
-                <a class="nav-link active" href="/">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('speakers') }}">Speakers</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('conversations') }}">Conversations</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('howto') }}">How-To</a>
+                <a class="nav-link active navbar-brand" href="/"><h2>Home</h2></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link"></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="https://shibboleth.csuchico.edu/idp/profile/cas/login?execution=e1s1">CSUC</a>
+                <a class="nav-link navbar-brand" href="{{ url_for('speakers') }}"><h2>Speakers</h2></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link navbar-brand" href="{{ url_for('conversations') }}"><h2>Conversations</h2></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link navbar-brand" href="{{ url_for('howto') }}"><h2>How-To</h2></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link navbar-brand" href="https://shibboleth.csuchico.edu/idp/profile/cas/login?execution=e1s1"><h2>CSUC</h2></a>
               </li>
             </ul>
 

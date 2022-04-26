@@ -13,6 +13,7 @@ def natural_sort(l):
 # Format is speaker-when to say line
 
 def make_conversation(conversation):
+    print("Convo:",conversation)
     destination = './outputs/conversation'
     os.system(f"rm {destination}/conversation.wav")
     # os.system("bash ./scripts/generate_text.sh {} from_api \"{}\"".format(speaker, text))

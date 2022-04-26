@@ -35,6 +35,12 @@
         <br>
         <input class="text-success" type="submit" value="Generate Conversation" name="generate" onclick="loading();">
     </form>
+    <hr>
+    <h4>Alternatively, you can upload a conversation file here</h4>
+    <form method="POST" enctype="multipart/form-data">
+      <input type="file" name="upload_file">
+      <input class="text-success" name="file_submit" type="submit" value="file_upload">
+    </form>
   </div>
 </div>
 {% endblock %}

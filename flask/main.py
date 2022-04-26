@@ -2,6 +2,7 @@ import re
 from flask import Flask, render_template, url_for, jsonify, make_response, send_file, request
 import json
 import os # for executing shell commands
+from werkzeug.utils import secure_filename
 from make_conversation import *
 app = Flask(__name__)
 
@@ -17,7 +18,6 @@ def index():
     if(request.method == "POST"):
         # Get speaker
         speaker = request.form.get('speaker_dropdown')
-        print(speaker)
         speaker_choice = speaker
         if(speaker == "Hillary Clinton"):
             speaker = "HLCL"
@@ -28,6 +28,7 @@ def index():
         elif(speaker == "Neil deGrasse Tyson"):
             speaker = "NDGT"
 
+        print("Speaker:", speaker)
         current_step = len(conversation)
         
         # Get first speaker text
@@ -49,8 +50,25 @@ def index():
         #     return send_file(f'./outputs/{speaker_one}/from_api.wav', download_name='from_api.wav', as_attachment=True)
         # except Exception as e:
         #     return str(e)
-    return render_template('index.html', speakers=speakers_list, to_display=processed_text, conversation_full=conversation, speaker_choice=speaker_choice)
 
+        print("Files:",request.files)
+        # Logic for input file:
+        if("upload_file" in request.files and request.files['upload_file'].filename != ''): # Prevent empty file
+            f = request.files['upload_file']
+            file_lines = f.stream.readlines()
+            for index,line in enumerate(file_lines):
+                speaker_key = line.decode("utf-8").split("||")[0]
+                content = line.decode("utf-8").split("||")[1].strip()
+                conversation[f"{index}-{speaker_key}"] = content
+            make_conversation(conversation)
+            conversation.clear()
+            return send_file(f'./outputs/conversation/conversation.wav', download_name='conversation.wav', as_attachment=True)
+
+            # f.save(secure_filename(f.filename)) # Don't need to save it
+            # print("File Contents:",f.stream.read())
+            # print("hello from", f.o)
+
+    return render_template('index.html', speakers=speakers_list, to_display=processed_text, conversation_full=conversation, speaker_choice=speaker_choice)
 
 # Speakers
 @app.route('/speakers')
