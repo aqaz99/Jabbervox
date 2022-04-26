@@ -5,7 +5,58 @@
 {% endblock %}
 
 {% block body %}
-<h1>Hello from Speakers</h1>
+<h1><strong>Current Speakers In Jabbervox</strong></h1>
 <br>
-<h3>Ignore me for now</h3>
+<div class="row">
+    <!-- Card 1 -->
+    <div class="card text-white bg-primary mx-auto" style="max-width: 42rem;">
+      <img class="card-img-top" src="{{ url_for('static', filename='images/laurence.jpg') }}" style="max-width: 42rem;" alt="Card image cap">
+      <div class="card-header"><h1>Laurence Fishburne</h1></div>
+      <div class="card-body">
+        <h4 class="card-title"><strong>Laurence John Fishburne III (born July 30, 1961) is an American actor. He is a three time Emmy Award and 
+            Tony Award winning actor known for his roles on stage and screen. He has been hailed for his forceful, militant, and authoritative characters 
+            in his films.He is known for playing Morpheus in the The Matrix series (1999–2003), Jason "Furious" Styles in the John Singleton drama film 
+            Boyz n the Hood (1991), Tyrone "Mr. Clean" Miller in Francis Ford Coppola's war film Apocalypse Now (1979), and "The Bowery King" in the John Wick 
+            film series (2017–present).</strong>
+        </h4>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="card text-white bg-primary mx-auto" style="max-width: 42rem;">
+        <img class="card-img-top" src="{{ url_for('static', filename='images/obama.jpg') }}" style="max-width: 42rem;" alt="Card image cap">
+        <div class="card-header"><h1>Barack Obama</h1></div>
+        <div class="card-body">
+            <h4 class="card-title"><strong>Barack Hussein Obama II (born August 4, 1961) is an American 
+                politician who served as the 44th president of the United States from 2009 to 2017. A member of the Democratic Party, Obama was the first African-American 
+                president of the United States. He previously served as a U.S. senator from Illinois from 2005 to 2008 and as an Illinois state senator from 1997 to 2004. <br>
+                Obama was born in Honolulu, Hawaii. After graduating from Columbia University in 1983, he worked as a community organizer in Chicago. In 1988, he enrolled in Harvard Law School, 
+                where he was the first black president of the Harvard Law Review.</strong>
+            </h4>
+          </div>
+      </div>
+    <!-- Card 3 -->
+    <div class="card text-white bg-primary mx-auto" style="max-width: 42rem;">
+        <img class="card-img-top" src="{{ url_for('static', filename='images/hillary.jpg') }}" style="max-width: 42rem;" alt="Card image cap">
+        <div class="card-header"><h1>Hillary Clinton</h1></div>
+        <div class="card-body">
+            <h4 class="card-title"><strong>Hillary Diane Rodham Clinton (born October 26, 1947) is an American politician, diplomat, lawyer, writer, and public speaker who served 
+                as the 67th United States secretary of state from 2009 to 2013, as a United States senator representing New York from 2001 to 2009, and as first lady of the United 
+                States from 1993 to 2001 as the wife of President Bill Clinton. A member of the Democratic Party, she was the party's nominee for president in the 2016 presidential 
+                election, which she lost to Donald Trump. <br>Raised in the Chicago suburb of Park Ridge, Rodham graduated from Wellesley College in 1969 and earned a Juris Doctor from Yale Law School in 1973.</strong>
+            </h4>
+          </div>
+      </div>
+    <!-- Card 4 -->
+    <div class="card text-white bg-primary mx-auto" style="max-width: 42rem;">
+        <img class="card-img-top" src="{{ url_for('static', filename='images/neil.jpg') }}" style="max-width: 42rem;" alt="Card image cap">
+        <div class="card-header"><h1>Neil deGrasse Tyson</h1></div>
+        <div class="card-body">
+            <h4 class="card-title"><strong>Neil deGrasse Tyson is an American astrophysicist, planetary scientist, author, 
+                and science communicator. Tyson studied at Harvard University, the University of Texas at Austin, and Columbia University. From 1991 to 1994, he was a postdoctoral 
+                research associate at Princeton University. In 1994, he joined the Hayden Planetarium as a staff scientist and the Princeton faculty as a visiting research 
+                scientist and lecturer. In 1996, he became director of the planetarium and oversaw its $210 million reconstruction project, which was completed in 2000. 
+                Since 1996, he has been the director of the Hayden Planetarium at the Rose Center for Earth and Space in New York City.</strong>
+          </div>
+      </div>
+  </div>
 {% endblock %}

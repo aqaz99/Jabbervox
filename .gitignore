@@ -1,7 +1,7 @@
 wav_youtube/wavs/*.wav
 wav_youtube/copies/*.wav
 wav_youtube/scripts/chopped
-wav_youtube/scripts/wavs
+wav_youtube/scripts/wavs/*.wav
 flask/wavs
 /training_data/**/wavs
 /training_data/**/wavs (copy)

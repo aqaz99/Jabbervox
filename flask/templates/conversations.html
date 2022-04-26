@@ -7,10 +7,68 @@
 {% block body %}
 <h1>Hello from Conversations</h1>
 <br>
-<audio controls>
-  <source src="{{ url_for('static', filename='audio/conversation.wav') }}">
-    <source src="{{ url_for('static', filename='audio/conversation.wav') }}">
-  Your browser does not support the audio element.
-  </audio>
-<h3>Ignore me for now</h3>
+<div class="row">
+  <!-- Card 1 Laurence -->
+  <div class="card text-white bg-primary mx-auto" style="max-width: 42rem;">
+    <div class="card-header"><h1>Laurence Fishburne</h1></div>
+    <div class="card-body">
+      <h4 class="card-title"><strong>You take the blue pill—the story ends, you wake up in your bed and believe whatever you want to believe. 
+        You take the red pill—you stay in Wonderland, and I show you how deep the rabbit hole goes. 
+        Remember: all I'm offering is the truth. Nothing more.</strong>
+      </h4>
+      <audio controls>
+        <source src="{{ url_for('static', filename='audio/laurence_hello.wav') }}">
+          <source src="{{ url_for('static', filename='audio/laurence_hello.wav') }}">
+        Your browser does not support the audio element.
+        </audio>
+    </div>
+  </div>
+  <!-- Card 2 Obama -->
+  <div class="card text-white bg-primary mx-auto" style="max-width: 42rem;">
+    <div class="card-header"><h1>Barack Obama</h1></div>
+    <div class="card-body">
+      <h4 class="card-title"><strong>We, the People, recognize that we have responsibilities as well as rights; 
+        that our destinies are bound together; that a freedom which only asks what's in it for me, a freedom without 
+        a commitment to others, a freedom without love or charity or duty or patriotism, is unworthy of our founding ideals, 
+        and those who died in their defense.</strong>
+      </h4>
+      <audio controls>
+        <source src="{{ url_for('static', filename='audio/obama_hello.wav') }}">
+          <source src="{{ url_for('static', filename='audio/obama_hello.wav') }}">
+        Your browser does not support the audio element.
+        </audio>
+    </div>
+  </div>
+  <!-- Card 3 Hillary -->
+  <div class="card text-white bg-primary mx-auto" style="max-width: 42rem;">
+    <div class="card-header"><h1>Hillary Clinton</h1></div>
+    <div class="card-body">
+      <h4 class="card-title"><strong>In almost every profession - whether it's law or journalism, 
+        finance or medicine or academia or running a small business - people rely on confidential communications to do their jobs. 
+        We count on the space of trust that confidentiality provides. When someone breaches that trust, we are all worse off for it.</strong>
+      </h4>
+      <audio controls>
+        <source src="{{ url_for('static', filename='audio/hillary_hello.wav') }}">
+          <source src="{{ url_for('static', filename='audio/hillary_hello.wav') }}">
+        Your browser does not support the audio element.
+        </audio>
+    </div>
+  </div>
+  <!-- Card 4 Neil -->
+  <div class="card text-white bg-primary mx-auto" style="max-width: 42rem;">
+    <div class="card-header"><h1>Neil deGrasse Tyson</h1></div>
+    <div class="card-body">
+      <h4 class="card-title"><strong>Recognize that the very molecules that make up your body, the atoms that construct the molecules, 
+        are traceable to the crucibles that were once the centers of high mass stars that exploded their chemically rich guts into the galaxy, 
+        enriching pristine gas clouds with the chemistry of life.</strong>
+      </h4>
+      <audio controls>
+        <source src="{{ url_for('static', filename='audio/neil_hello.wav') }}">
+          <source src="{{ url_for('static', filename='audio/neil_hello.wav') }}">
+        Your browser does not support the audio element.
+        </audio>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

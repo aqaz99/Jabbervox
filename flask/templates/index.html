@@ -4,31 +4,37 @@
 {% endblock %}
 
 {% block body %}
-<form method="POST">
-    <select class="dropdown-item text-white"name="speaker_dropdown" method="GET" action="/">
-        {% for speaker in speakers %}
-            <option value="{{speaker}}" {% if speaker == speaker_choice %} SELECTED {% endif %}>{{speaker}}</option>
-        {% endfor %}
-    </select>
+<div class="card text-white bg-primary mb-3 mx-auto" style="max-width: 42rem;">
+  <div class="card-header"><h1>Create A Conversation</h1></div>
+  <div class="card-body">
+    <h2 class="card-title">Pick Your Speakers</h2>
+    <form method="POST">
+        <select class="dropdown-item text-white"name="speaker_dropdown" method="GET" action="/">
+            {% for speaker in speakers %}
+                <option value="{{speaker}}" {% if speaker == speaker_choice %} SELECTED {% endif %}>{{speaker}}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input name="speaker">
+        <input class="text-success" type="submit">
+    </form>
     <br>
-    <input name="speaker">
-    <input class="text-success" type="submit">
-</form>
-<br>
-<h3><strong>Current Conversation</strong></h3>
+    <h3><strong>Current Conversation</strong></h3>
 
-<table>
-      <tbody>
-        {% for convo_piece in conversation_full %}
-        <tr>
-          <td class="text-success"><h3>{{ convo_piece }}: {{ conversation_full[convo_piece] }}</h3></td>
-        </tr>
-        {% endfor %}
-      </tbody>
-</table>
+    <table>
+          <tbody>
+            {% for convo_piece in conversation_full %}
+            <tr>
+              <td class="text-success"><h3>{{ convo_piece }}: {{ conversation_full[convo_piece] }}</h3></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+    </table>
 
-<form method="POST">
-    <br>
-    <input class="text-success" type="submit" value="Generate Conversation" name="generate" onclick="loading();">
-</form>
+    <form method="POST">
+        <br>
+        <input class="text-success" type="submit" value="Generate Conversation" name="generate" onclick="loading();">
+    </form>
+  </div>
+</div>
 {% endblock %}
