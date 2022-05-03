@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<h1>Links, Resources, Research, and More!</h1>
+<hr>
+
+
+<div class="row">
+    <div class="column mx-auto">
+        <div class="card text-white bg-primary mx-auto" style="max-width: 42rem;">
+            <div class="card-header"><h1>Speaker Stats</h1></div>
+            <div class="card-body">
+              <h4 class="card-title text-left">
+                  Each model that I trained required many hours of training on my personal GPU-powered computer. After gathering both the audio and text
+                  for a speaker, the training could begin. Though, there are lots of reasons why a models performance could be poor. Incorrect audio to text transcription,
+                  poor audio quality, speaker mumbles or has poor enunciation when speaking, and simply, not enough hours of audio for training.
+                  <hr>Below I will list various stats on training for my models, how long they were trained, and errors I occured along the way.<hr>
+                  <strong>Model 1: <a href="https://www.youtube.com/user/mcolville">Matthew Colville</a> (abandoned)</strong>
+                  <ul>
+                      <li><strong>Amount of training data (hours): 14</strong></li>
+                      <li><strong>Source of data: Youtube</strong></li>
+                      <li><strong>Elapsed training time (hours): 17</strong></li>
+                  </ul>
+                  <br><br>
+                  Matt Colville is a prominent Youtuber who makes videos regarding the board game D&D. His videos often consist of long drawn out monologues
+                  direct to the camera with little interruption, no overlayed music, and generally high quality. A perfect first candidate for my project, 
+                  but unfortunately, after painstakingly curating over a dozen hours of audio w/ text transcript, the model I made was terrible. It made long
+                  drawn out horrifying tones in a poor attempt at speech. I attempted to tweak some hyperparameters in my training but it never yielded better results.
+                  After this failure, I abandoned the Youtube route and when to Audible. 
+                  <hr>
+
+                  <strong>Model 2: Barack Obama</strong>
+                  <ul>
+                      <li><strong>Amount of training data (hours): 29</strong></li>
+                      <li><strong>Source of data: Audible</strong></li>
+                      <li><strong>Elapsed training time (hours): 9</strong></li>
+                      <li><strong>Steps Taken in Training: 90,000</strong></li>
+                  </ul>
+                  <br><br>
+                  Obama was my first Audible model and after much configuration and some training, you could actually discern words he was saying.
+                  Though, for Audible, I needed to feed the audio into a speech-to-text recognizer and it would often mistake his words. Obama tends to mumble,
+                  and not clearly state his words, causing the transcript that I was generating to be about 70% accurate. The inaccuracies of the text are a large
+                  contributing factor to the poorer performance of the model. Though you can absolutely tell this is Obama.
+                  <hr>
+
+                  <strong>Model 3: Hillary Clinton</strong>
+                  <ul>
+                      <li><strong>Amount of training data (hours): 18.5</strong></li>
+                      <li><strong>Source of data: Audible</strong></li>
+                      <li><strong>Elapsed training time (hours): 16</strong></li>
+                      <li><strong>Steps Taken in Training: 140,000</strong></li>
+                  </ul>
+                  <br><br>
+                  Though I had less audio for Hillary, it turned out to be a much better model. I believe this is due to the fact that when I fed her audio
+                  into the speech-to-text recognizer, it had about 95% accuracy in correctly interpretting what she said. So when I trained her model, there was much
+                  less error and her voice "formed" much sooner than Obama's. Though, you can still hear some odd anomolies in the way she ends her words and sentences 
+                  sometimes. This could be do to certain audio clips being cut short or some other factor I haven't considered.
+                  <hr>
+
+                  <strong>Model 4: Laurence Fishburne</strong>
+                  <ul>
+                      <li><strong>Amount of training data (hours): 17</strong></li>
+                      <li><strong>Source of data: Audible</strong></li>
+                      <li><strong>Elapsed training time (hours): 18</strong></li>
+                      <li><strong>Steps Taken in Training: 180,000</strong></li>
+                  </ul>
+                  <br><br>
+                  Arguably one of my best models, Laurence Fishburne still has some odd vocal anomolies and that static, robotty sound to his voice. 
+                  During training for this model, I had hit my stride and found a good rhythm of what worked, what didn't, what to look for and how long to train.
+                  Most models would converge at a point and not get any better, even though training would continue. I believe this is as good as I could get this model
+                  given my current hardware, trainer I chose, and collection of data. 
+                  <hr>
+
+                  <strong>Model 5: Neil deGrasse Tyson</strong>
+                  <ul>
+                      <li><strong>Amount of training data (hours): 4</strong></li>
+                      <li><strong>Source of data: Audible</strong></li>
+                      <li><strong>Elapsed training time (hours): 5</strong></li>
+                      <li><strong>Steps Taken in Training: 40,000</strong></li>
+                  </ul>
+                  <br><br>
+                  Neil's model I had the least data for which proved challening because I believe him to have an incredibly iconic and recognizable voice. Though,
+                  I could only find one audio book with him narrating the entirety of it which was about 4 hours. unfortunate. After quick training I am actually quite
+                  pleased with how this model turned out. While not incredible, I was able to produce at least a model with a recognizable voice in under 5 hours.
+                </h4>
+            </div>
+          </div>
+        </div>
+        <div class="column mx-auto">
+            <div class="card text-white bg-primary mx-auto" style="max-width: 42rem;">
+                <div class="card-header"><h1>How did I train the models?</h1></div>
+                <div class="card-body">
+                  <h4 class="card-title text-left">
+                      It took quite a few days just to figure out how to train my very first model, not even with data that I gathered myself.
+                      The GitHub Repo I used to assist in the training requires a lot of complex setup and provides a few (sometimes inaccurate) guides.
+                      <br><br>
+                      The first thing I needed to do after setting up my dev environemt was gather data for training. Namely: clear, single speaker, high quality
+                      audio that came with a text transcript of what was said in the audio. 
+                      <br><br>
+                      This proved to be quite a challenge and I had to write a few Python
+                      scripts to scrape, download, and parse Youtube videos for audio and transcipt and then feed that into my machine learning algorithm. 
+                      <br><br>
+                      Going the Youtube route was slow an arduous, eventually I migrated to using Audible audio files. This proved highly successful as many famous individuals
+                      have narrated hours worth of audio on various books! I was able to then grab a free book every month and use that book to train a new speaker
+                    </h4>
+                </div>
+              </div>
+            </div>
+    <div class="column mx-auto">
+        <div class="card text-white bg-primary mx-auto" style="max-width: 42rem;">
+        <div class="card-header"><h1>Links & Technologies Used</h1></div>
+        <div class="card-body">
+            <h4 class="card-title">
+                Here is a list of links of either resources I used or to my resources
+                <br><br>
+                <ul class="text-left">
+                    <li><strong>TTS repo used for model training: </strong><a href="https://github.com/coqui-ai/TTS">https://github.com/coqui-ai/TTS</a></li>
+                    <li><strong>My personal, public repo for this project: </strong><a href="https://github.com/aqaz99/Jabbervox">https://github.com/aqaz99/Jabbervox</a></li>
+                </ul>
+                <hr>
+                List of Technologies I used
+                <br><br>
+                <ul class="text-left">
+                    <li>Python</li>
+                    <li>Flask</li>
+                    <li>Tensorflow</li>
+                    <li>Pytorch</li>
+                    <li>Flutter & Dart</li>
+                    <li>Google Cloud Platform</li>
+                    <li>Audible</li>
+                    <li>Youtube</li>
+                </ul>
+                List of Python libraries I used for my scripts and training
+                <br><br>
+                <div class="row">
+                <div class="column">                
+                    <ul class="text-left">
+                        <li>flask</li>
+                        <li>json</li>
+                        <li>os</li>
+                        <li>werkzeug.utils</li>
+                        <li>pydub</li>
+                        <li>speech_recognition</li>
+                        <li>argparse</li>
+                        <li>glob</li>
+                    </ul>
+                </div>
+                <div class="column">                
+                    <ul class="text-left">
+                        <li>numpy</li>
+                        <li>tqdm</li>
+                        <li>google.cloud - speech_v1p1beta1</li>
+                        <li>time</li>
+                        <li>youtube_dl</li>
+                        <li>datetime</li>
+                        <li>shutil</li>
+                    </ul>
+                </div>
+            </div>
+
+            </h4>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

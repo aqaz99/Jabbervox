@@ -81,9 +81,9 @@ def conversations():
     return render_template('conversations.html')
 
 # How To
-@app.route('/howto')
-def howto():
-    return render_template('howto.html')
+@app.route('/info')
+def info():
+    return render_template('info.html')
 
 
 # API base
